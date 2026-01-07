@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
+from dotenv import load_dotenv
 import os
 from pathlib import Path
 
@@ -77,6 +78,8 @@ WSGI_APPLICATION = 'recrute.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+
+load_dotenv(BASE_DIR / '.env')
 
 DATABASES = {
     'default': {
