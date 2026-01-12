@@ -12,6 +12,5 @@ urlpatterns = [
 
     path("recrutador/editar/<int:id>", views.recrutador_vagas_editar, name="recrutador_vagas_editar"),
 
-path("candidato/home/", views.candidato_home, name="candidato_home"),
-    path("candidato/buscar_vaga/", views.candidato_buscar_vaga, name="candidato_buscar_vaga"),
+
 ]

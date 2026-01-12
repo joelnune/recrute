@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Vaga(models.Model):
     titulo = models.CharField(max_length=100)
@@ -7,15 +8,24 @@ class Vaga(models.Model):
 
 
 class Candidato(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
+    nome = models.CharField(max_length=100,null=True)
+    cpf = models.CharField(max_length=100,null=True)
+    email = models.CharField(max_length=100,null=True)
+    curriculo = models.BinaryField(blank=True, null=True)
+    cargo = models.CharField(max_length=100,null=True)
+
+class Recrutador(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
-    cpf = models.CharField(max_length=100)
-    cargo = models.CharField(max_length=100)
+    nome_empresa = models.CharField(max_length=100,null=True)
+    cnpj = models.CharField(max_length=100)
+    cargo = models.CharField(max_length=100,null=True)
 
 class CandidatoVaga(models.Model):
 
     candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE)
     vaga = models.ForeignKey(Vaga, on_delete=models.CASCADE)
-
     data_candidatura = models.DateTimeField(auto_now_add=True)
 
     STATUS_OPCOES = [

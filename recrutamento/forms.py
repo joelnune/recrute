@@ -1,7 +1,7 @@
 from django import forms
-from .models import Vaga
+from .models import Vaga,Candidato
 
-class RecrutadorForm(forms.ModelForm):
+class VagaForm(forms.ModelForm):
     class Meta:
         model = Vaga
         fields = ['titulo', 'descricao','salario']
