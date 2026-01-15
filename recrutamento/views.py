@@ -1,14 +1,24 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,HttpRequest
 from django.shortcuts import render, redirect
+
+from accounts.decorators.permissions import recrutador_required, candidato_required
 from .forms import VagaForm
 from . models import Vaga,CandidatoVaga,Candidato
 from django.contrib.auth.models import User
 
 def index(request):
     return HttpResponse("Rota principal.")
+@login_required
+
 def recrutador_vagas_home(request):
     contexto = {'vagas':Vaga.objects.all()}
     return render(request,'recrutador/vagas/home.html',contexto)
+@login_required
+
+def candidato_vagas_home(request):
+    contexto = {'vagas':Vaga.objects.all()}
+    return render(request,'candidato/home.html',contexto)
 
 def recrutador_vagas_criar(request:HttpRequest):
 
