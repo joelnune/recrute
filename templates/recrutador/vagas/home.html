@@ -1,30 +1,30 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/recrutador/card_vagas.css' %}">
+
+
     <title>Title</title>
 </head>
 <body>
-    <h1>Minhas vagas:</h1>
-    <table>
-        <thead>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </thead>
-        <tbody>
-            {% for vaga in vagas %}
-                <tr>
-                    <td>{{ vaga.titulo }}</td>
-                    <td>{{ vaga.descricao }}</td>
-                    <td>{{ vaga.salario }}</td>
-                    <td> <a href="{% url 'recrutamento:recrutador_vagas_editar' vaga.id %}"> Editar </a> </td>
-                    <td> <a href="{% url 'recrutamento:recrutador_vagas_remover' vaga.id %}"> Remover </a> </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h1> Minha vagas:</h1>
+    <div class="vagas-container">
+        {% for vaga in vagas %}
+            <div class="vaga-card">
+                <h3>{{ vaga.titulo }}</h3>
+                <p class="descricao">{{ vaga.descricao }}</p>
+                <p class="salario"> R$ {{ vaga.salario }}</p>
+                <p class="remoto">{% if vaga.remoto %} Remoto
+                {% else %} Presencial
+                 {% endif %}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+
+
     <a href="{% url 'recrutamento:recrutador_vagas_criar' %}"> Criar Vaga</a>
 </body>
 </html>

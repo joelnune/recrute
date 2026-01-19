@@ -1,10 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/recrutador/card_vagas.css' %}">
     <title>AREA DO CANDIDATO</title>
 </head>
 <body>
-    <H1>AREA DO CANDIDATO</H1>
+     <h1> Buscar vaga:</h1>
+        <form action="" method="post">
+        {% csrf_token %}
+            <input
+        type="text"
+        name="q"
+        placeholder="Buscar por cargo, tecnologia ou palavra-chave"
+        value="{{ query }}"
+        class="busca-input"
+    >
+            <input type="submit" value="Enviar">
+
+        </form>
+        <div class="vagas-container">
+
+        {% if sem_vagas  %}
+            <h1>Nenhuma vaga foi encontrada</h1>
+        {% endif %}
+        {% for vaga in vagas %}
+            <div class="vaga-card">
+                <h3>{{ vaga.titulo }}</h3>
+                <p class="descricao">{{ vaga.descricao }}</p>
+                <p class="salario"> R$ {{ vaga.salario }}</p>
+                <p class="remoto">{% if vaga.remoto %} Remoto
+                {% else %} Presencial
+                 {% endif %}
+                </p>
+        {% endfor %}
+            </div>
+        </div>
 </body>
 </html>

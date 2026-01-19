@@ -1,11 +1,7 @@
+from asyncio.windows_events import NULL
+
 from django.db import models
 from django.contrib.auth.models import User
-
-class Vaga(models.Model):
-    titulo = models.CharField(max_length=100)
-    descricao = models.CharField(max_length=100)
-    salario = models.FloatField(default=0)
-
 
 class Candidato(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
@@ -21,6 +17,15 @@ class Recrutador(models.Model):
     nome_empresa = models.CharField(max_length=100,null=True)
     cnpj = models.CharField(max_length=100)
     cargo = models.CharField(max_length=100,null=True)
+
+
+class Vaga(models.Model):
+    titulo = models.CharField(max_length=100)
+    descricao = models.CharField(max_length=100)
+    salario = models.FloatField(default=0)
+    remoto = models.BooleanField(default=False)
+    recrutador = models.ForeignKey(User, on_delete=models.CASCADE,related_name='vagas',default=None)
+    data_criacao = models.DateTimeField(auto_now_add=True)
 
 class CandidatoVaga(models.Model):
 
@@ -42,4 +47,4 @@ class CandidatoVaga(models.Model):
         unique_together = ('candidato', 'vaga')  # impede o mesmo candidato se candidatar 2x na mesma vaga
 
     def __str__(self):
-        return f"{self.candidato} -> {self.vaga}"
+        return f"{self.candidato} -> {self}"
