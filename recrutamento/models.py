@@ -15,14 +15,18 @@ class Recrutador(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
     nome_empresa = models.CharField(max_length=100,null=True)
+    descricao_empresa = models.CharField(max_length=600,null=True)
+    descricao = models.CharField(max_length=600,null=True)
     cnpj = models.CharField(max_length=100)
     cargo = models.CharField(max_length=100,null=True)
 
 
 class Vaga(models.Model):
     titulo = models.CharField(max_length=100)
-    descricao = models.CharField(max_length=100)
-    salario = models.FloatField(default=0)
+    descricao = models.CharField(max_length=400,null=True)
+    responsabilidades = models.CharField(max_length=400,null=True)
+    habilidades = models.CharField(max_length=400,null=True)
+    salario = models.FloatField(default=0,null=True)
     remoto = models.BooleanField(default=False)
     recrutador = models.ForeignKey(User, on_delete=models.CASCADE,related_name='vagas',default=None)
     data_criacao = models.DateTimeField(auto_now_add=True)

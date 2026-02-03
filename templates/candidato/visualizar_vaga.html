@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{vaga.titulo}}</title>
+</head>
+<body>
+    <div>
+        <h1>{{vaga.titulo}}</h1>
+        <h2>{{ recrutador.nome_empresa }}</h2>
+        <h2>
+            {{ vaga.salario }}
+        </h2>
+        <h3>{{vaga.descricao}}</h3>
+        <h3>{{vaga.habilidades}}</h3>
+        <h3>{{vaga.responsabilidades}}</h3>
+        <p>Recrutador:</p>
+        <p>
+            {{ recrutador.nome }}
+        </p>
+         <p>
+            {{ recrutador.cargo }}
+        </p>
+    </div>
+    <div>
+       <form method="post" action="{% url 'recrutamento:efetuar_candidatura' vaga.id %}">
+    {% csrf_token %}
+
+    <button type="submit">
+        Candidatar-se
+    </button>
+</form>
+
+    </div>
+</body>
+</html>

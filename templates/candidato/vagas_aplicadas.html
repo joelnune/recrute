@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/recrutador/card_vagas.css' %}">
+    <title>Title</title>
+</head>
+<body>
+  {% for candidato_vaga in candidato_vagas %}
+            <div class="vaga-card">
+
+
+                <h3>{{ candidato_vaga.vaga.titulo }}</h3>
+                <h2 class="status">{{ candidato_vaga.status }}</h2>
+                <p class="descricao">{{ candidato_vaga.vaga.descricao }}</p>
+                <p class="salario"> R$ {{ candidato_vaga.vaga.salario }}</p>
+                <p class="remoto">{% if candidato_vaga.vaga.remoto %} Remoto
+                {% else %} Presencial
+                 {% endif %}
+                </p>
+                 <a href="vagas_aplicadas/cancelar/{{candidato_vaga.id}}" style=" all: unset ">
+                 <h2> Cancelar aplicação</h2>
+                 </a>
+            </div>
+        {% endfor %}
+</body>
+</html>

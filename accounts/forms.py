@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class CandidatoForm(forms.ModelForm):
     class Meta:
         model = Candidato
-        fields = ['nome', 'cpf', 'email','cargo' ]
+        fields = ['nome', 'cpf','cargo' ]
 
 
 class RecrutadorForm(forms.ModelForm):

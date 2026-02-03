@@ -12,6 +12,9 @@ urlpatterns = [
 
 
     path("candidato/vagas/", views.candidato_vagas_home, name="candidato_vagas_home"),
-
+    path("candidato/vagas/<int:id>", views.candidato_visualizar_vaga, name="candidato_visualizar_vaga"),
+    path("candidato/vagas/efetuar_candidatura/<int:id>", views.efetuar_candidatura, name="efetuar_candidatura"),
+    path("candidato/vagas_aplicadas", views.visualizar_vagas_aplicadas, name="visualizar_vagas_aplicadas"),
+path("candidato/vagas_aplicadas/cancelar/<int:id>", views.cancelar_aplicacao, name="cancelar_aplicacao"),
 
 ]
